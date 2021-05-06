@@ -1,26 +1,14 @@
 import React from 'react';
-import { View, StyleSheet, Text } from 'react-native'
-import { NavigationContainer } from '@react-navigation/native';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Home from './Screen/home';
-import Login from './Screen/login';
-
-const Tab = createBottomTabNavigator();
+import { ProvideAuth } from './hooks/useAuth';
+import NavBar from './Screen/NavBar';
 
 const App = () => {
   return (
-
-    <NavigationContainer>
-      <Tab.Navigator>
-        <Tab.Screen name="Home" component={Home} />
-        <Tab.Screen name="Login" component={Login} />
-      </Tab.Navigator>
-    </NavigationContainer>
+    <ProvideAuth>
+      <NavBar/>
+    </ProvideAuth>
 
   );
 };
-
-const styles = StyleSheet.create({
-});
 
 export default App;
