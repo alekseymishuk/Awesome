@@ -1,28 +1,26 @@
+import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
-import { useAuth } from '../hooks/useAuth';
+import { useAuth } from '../../hooks/useAuth';
+import Login from './login';
+useNavigation
 
-const Signup = () => {
+const ResetPassword = () => {
 
-    const { signup } = useAuth();
-
-    const [login, setLogin] = useState('');
+    const { confirmPasswordReset } = useAuth();
+    const navigation = useNavigation();
+    const [code, setCode] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState('');
 
-    const handleSubmit = () => signup(login, password);
-
-    const isMismatch = confirmPassword !== '' && password !== confirmPassword;
+    const handleSubmit = () => {
+        if(confirmPasswordReset(code, password))
+            navigation.navigate(Login)
+    }
 
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>Signup</Text>
-            <TextInput
-                style={styles.inputField}
-                value={login}
-                placeholder="login or email"
-                onChangeText={setLogin}
-            />
+            <Text style={styles.title}>Reset password</Text>
             <TextInput 
                 style={styles.inputField} 
                 value={password} placeholder="password" 
@@ -36,13 +34,19 @@ const Signup = () => {
                 placeholder="confirm password" 
                 keyboardType={"autoCompleteType"} 
                 onChangeText={setConfirmPassword} 
-                secureTextEntry />
-            {isMismatch && <Text style={styles.mismatchText}>password mismatch </Text>}
+                secureTextEntry
+            />
+            <TextInput 
+                style={styles.inputField}
+                value={code}
+                placeholder="code"
+                onChangeText={setCode}
+            />
+            
             <Button title="Submit" onPress={handleSubmit} />
         </View>
     )
 }
-
 
 const styles = StyleSheet.create({
     container: {
@@ -57,16 +61,12 @@ const styles = StyleSheet.create({
         fontWeight: "700"
     },
     inputField: {
-        borderColor: "#AAAAAA",
+        borderColor: "#aaaaaa",
         borderStyle: "solid",
         borderWidth: 1,
         width: "100%"
     },
-    mismatchText: {
-        color: "#999999",
-    }
-});
+  });
 
 
-
-export default Signup;
+export default ResetPassword;

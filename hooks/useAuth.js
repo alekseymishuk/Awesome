@@ -3,12 +3,17 @@ import React, { useState, useEffect, useContext, createContext } from "react";
 import firebase from "firebase/app";
 import 'firebase/auth';
 
-firebase.initializeApp({
-  apiKey: "apiKey",
-  authDomain: "domain",
-  projectId: "projectId",
-  appID: "appId",
-});
+const firebaseConfig = {
+  apiKey: "AIzaSyDgfq-AF6hRNQEIkpfNeR7PJ87_6U-JhVk",
+  authDomain: "sgralexm.firebaseapp.com",
+  projectId: "sgralexm",
+  storageBucket: "sgralexm.appspot.com",
+  messagingSenderId: "149972553439",
+  appId: "1:149972553439:web:775f83fa4466058e9ee36a",
+  measurementId: "G-YTSSLD54CP"
+};
+
+firebase.initializeApp(firebaseConfig);
 const authContext = createContext();
 
 export function ProvideAuth({ children }) {
@@ -27,6 +32,7 @@ function useProvideAuth() {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then((response) => {
+        console.log("setUser",setUser)
         setUser(response.user);
         return response.user;
       });

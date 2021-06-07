@@ -1,6 +1,7 @@
 
  import React from 'react';
  import {
+   Button,
    SafeAreaView,
    ScrollView,
    StatusBar,
@@ -14,6 +15,8 @@
    Colors,
    Header,
  } from 'react-native/Libraries/NewAppScreen';
+
+ import { useAuth } from '../hooks/useAuth'
  
  const Section = ({children, title}) => {
    const isDarkMode = useColorScheme() === 'dark';
@@ -41,8 +44,10 @@
    );
  };
  
- const Home = () => {
+ const Profile = () => {
    const isDarkMode = useColorScheme() === 'dark';
+
+   const { signout, user } = useAuth();
  
    const backgroundStyle = {
      backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
@@ -59,7 +64,9 @@
            style={{
              backgroundColor: isDarkMode ? Colors.black : Colors.white,
            }}>
-           <Section title="Hello, World"></Section>           
+           <Section title={`Profile - ${user.email}`}></Section> 
+           <Text></Text>      
+           <Button onPress={signout} title="Sign out"/>
          </View>
        </ScrollView>
      </SafeAreaView>
@@ -85,5 +92,5 @@
    },
  });
  
- export default Home;
+ export default Profile;
  
