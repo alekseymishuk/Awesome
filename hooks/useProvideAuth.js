@@ -1,16 +1,7 @@
 import React, { useState, useEffect, useContext, createContext } from 'react';
 import firebase from 'firebase/app';
 import 'firebase/auth';
-
-const firebaseConfig = {
-    apiKey: 'AIzaSyDgfq-AF6hRNQEIkpfNeR7PJ87_6U-JhVk',
-    authDomain: 'sgralexm.firebaseapp.com',
-    projectId: 'sgralexm',
-    storageBucket: 'sgralexm.appspot.com',
-    messagingSenderId: '149972553439',
-    appId: '1:149972553439:web:775f83fa4466058e9ee36a',
-    measurementId: 'G-YTSSLD54CP',
-};
+import { firebaseConfig } from '../constants/firebaseConfig';
 
 if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
 
@@ -23,7 +14,8 @@ export function useProvideAuth() {
             .then(response => {
                 setUser(response.user);
                 return response.user;
-            });
+            })
+            .catch(error => alert(error));
     };
     const signup = (email, password) => {
         return firebase
@@ -32,7 +24,8 @@ export function useProvideAuth() {
             .then(response => {
                 setUser(response.user);
                 return response.user;
-            });
+            })
+            .catch(error => alert(error));
     };
     const signout = () => {
         return firebase
@@ -40,7 +33,8 @@ export function useProvideAuth() {
             .signOut()
             .then(() => {
                 setUser(false);
-            });
+            })
+            .catch(error => alert(error));
     };
     const sendPasswordResetEmail = email => {
         return firebase
@@ -48,7 +42,8 @@ export function useProvideAuth() {
             .sendPasswordResetEmail(email)
             .then(() => {
                 return true;
-            });
+            })
+            .catch(error => alert(error));
     };
     const confirmPasswordReset = (code, password) => {
         return firebase
@@ -56,7 +51,8 @@ export function useProvideAuth() {
             .confirmPasswordReset(code, password)
             .then(() => {
                 return true;
-            });
+            })
+            .catch(error => alert(error));
     };
 
     useEffect(() => {

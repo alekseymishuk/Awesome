@@ -9,7 +9,11 @@ function Login({ navigation }) {
     const [password, setPassword] = useState('');
 
     const handleSubmit = useCallback(() => {
-        signin(login, password);
+        try {
+            signin(login, password);
+        } catch (error) {
+            console.log('signin error', error);
+        }
     }, [signin, login, password]);
 
     const handleForgotPasswod = useCallback(() => {
