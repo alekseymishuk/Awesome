@@ -34,8 +34,13 @@ function Login({ navigation }) {
                 secureTextEntry
             />
 
-            <Text onPress={handleForgotPasswod}>Forgot password?</Text>
-            <Button title="Submit" onPress={handleSubmit} />
+            <View style={styles.button}>
+                <Button title="Submit" onPress={handleSubmit} />
+            </View>
+
+            <View style={styles.fpContainer}>
+                <Text onPress={handleForgotPasswod}>Forgot password?</Text>
+            </View>
         </View>
     );
 }
@@ -44,6 +49,8 @@ const styles = StyleSheet.create({
     container: {
         paddingTop: '60%',
         paddingHorizontal: 10,
+        backgroundColor: 'lightgrey',
+        flexGrow: 1,
     },
     title: {
         alignSelf: 'center',
@@ -55,6 +62,15 @@ const styles = StyleSheet.create({
         borderStyle: 'solid',
         borderWidth: 1,
         width: '100%',
+        borderRadius: 8,
+        backgroundColor: 'white',
+    },
+    button: {
+        paddingTop: 20,
+    },
+    fpContainer: {
+        paddingTop: 20,
+        alignItems: 'center',
     },
 });
 
