@@ -9,11 +9,7 @@ function Login({ navigation }) {
     const [password, setPassword] = useState('');
 
     const handleSubmit = useCallback(() => {
-        try {
-            signin(login, password);
-        } catch (error) {
-            console.log('signin error', error);
-        }
+        signin(login, password);
     }, [signin, login, password]);
 
     const handleForgotPasswod = useCallback(() => {
@@ -46,8 +42,6 @@ function Login({ navigation }) {
 
 const styles = StyleSheet.create({
     container: {
-        height: '100%',
-        width: '100%',
         paddingTop: '60%',
         paddingHorizontal: 10,
     },
