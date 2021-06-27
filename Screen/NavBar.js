@@ -11,23 +11,21 @@ const Tab = createBottomTabNavigator();
 
 export default NavBar = () => {
     const { user } = useAuth();
-    console.log("user", user)
     return (
         <NavigationContainer>
             <Tab.Navigator>
-            {!!user ?
+                {!!user ? (
                     <>
                         <Tab.Screen name="Home" component={Home} />
                         <Tab.Screen name="Profile" component={Profile} />
                     </>
-                :
+                ) : (
                     <>
                         <Tab.Screen name="Login" component={LoginStackScreen} />
                         <Tab.Screen name="Signup" component={Signup} />
-
                     </>
-            }
+                )}
             </Tab.Navigator>
         </NavigationContainer>
     );
-}
+};

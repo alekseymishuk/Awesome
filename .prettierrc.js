@@ -9,12 +9,4 @@ module.exports = {
     jsxBracketSameLine: false,
     arrowParens: "avoid",
     endOfLine: "auto",
-    overrides: [
-        {
-            files: "*.scss",
-            options: {
-                tabWidth: 2
-            }
-        }
-    ]
 };

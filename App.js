@@ -1,13 +1,13 @@
 import React from 'react';
-import { ProvideAuth } from './hooks/useAuth';
+import AuthContextProvider from './providers/AuthContextProvider';
 import NavBar from './Screen/NavBar';
 
 const App = () => {
-  return (
-    <ProvideAuth>
-      <NavBar/>
-    </ProvideAuth>
-  );
+    return (
+        <AuthContextProvider>
+            <NavBar />
+        </AuthContextProvider>
+    );
 };
 
 export default App;
